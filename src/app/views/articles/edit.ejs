@@ -1,0 +1,78 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbar.ejs") %>
+
+  <div class="container center">
+    <h3>Editar</h3>
+    <% if(error != undefined){ %>
+      <div class="center card-panel red lighten-1 white-text"><%= error %></div>
+    <% } %>
+    <a href="/articles" class="waves-effect waves-light btn self-button"><i class="material-icons left">arrow_back</i>Voltar</a>
+    <div id="self-box-form" style="max-width: none">
+      <div class="row center">
+        <form action="/articles/edit/<%= article.id %>" method="POST">
+          <div class="row"><br>
+            <div class="input-field center" style="max-width: 450px;margin: auto">
+              <input id="input_text" type="text" name="title" value="<%= article.title %>">
+              <label for="input_text">Título</label><br><br>
+            </div>
+            <br><br>         
+            <div class="input-field" style="max-width: 450px;margin: auto">
+              <select name="categoryId">
+                  <option value="" disabled>Selecione uma categoria</option>
+                <% categories.forEach(temp => { %>
+                  <% if(article.categoryId == temp.id){ %>
+                    <option value="<%= temp.id %>" selected><%= temp.title %></option>
+                  <% } else { %>
+                    <option value="<%= temp.id %>"><%= temp.title %></option>
+                  <% } %>
+                <% }) %>
+              </select>
+              <label>Categoria</label>
+            </div>
+            <br><br>
+
+            <textarea name="body" id="tiny-self" style="min-height: 300px;"></textarea><br><br>
+            <button type="submit" class="btn waves-effect">Concluir</button>
+            <br><br><hr>
+          </div>
+        </form>
+        <form action="/articles/delete/<%= article.id %>" method="POST" onsubmit="confirmErase(event, this)">
+          <button class="btn waves-effect red" type="submit" >Excluir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="tiny-content" style="display:none;">
+    <%= article.body %>
+  </div>
+
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+
+    // tinymce
+    tinymce.init({
+      selector: "#tiny-self",
+      language: "pt_BR",
+      activeEditor: true,
+      plugins: ['link image wordcount insertdatetime emoticons'],
+      init_instance_callback: () => {
+        tinymce.get("tiny-self").setContent(document.getElementById("tiny-content").textContent);
+      }
+    });
+
+    // select
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+  });
+
+  // prevent erase
+    function confirmErase(event, form){
+      event.preventDefault();
+      var decision = confirm("Confirmar a exclusão? não poderá reverter a decisão");
+      if (decision) {
+        form.submit();
+      }
+    }
+  </script>
+<%- include("../partials/footer.ejs") %>

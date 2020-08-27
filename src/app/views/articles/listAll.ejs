@@ -1,0 +1,44 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbar.ejs") %>
+
+  <div class="container">
+    <h3></h3>
+    <% if(error !== undefined){ %>
+      <div class="center card-panel red lighten-1 white-text"><%= error %></div>
+    <% } %>
+    <hr>
+    <div class="center"><a href="/articles/new" class="btn waves-effect self-button">Criar novo artigo<i class="material-icons right">add_box</i></a></div>
+    <div class="grey lighten-2">
+      <table class="striped">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Categoria</th>
+            <th>Autor</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% articles.forEach(temp => { %>
+          <tr>
+            <td><a href="/view/<%= temp.slug %>" class="waves-effect waves-indigo"><%= temp.title %></a></td>
+            <td><a href="/category/<%= temp.category.slug %>" class="waves-effect waves-indigo"><%= temp.category.title %></a></td>
+            <td><a href="/user/<%= temp.user.id %>" class="waves-effect waves-indigo"><%= temp.user.name %></a></td>
+            <td>
+              <% if(session.userId == temp.user.id){ %>
+                <a href="/articles/edit/<%= temp.id %>" class="btn waves-effect yellow darken-2"><i class="material-icons black-text">edit</i></a>
+              <% } else { %>
+                <button class="btn red disabled"><i class="material-icons white-text">close</i></button>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+  </div>
+
+<%- include("../partials/footer.ejs") %>
+
