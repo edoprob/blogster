@@ -1,0 +1,46 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbarLogin.ejs") %>
+  
+    <div class="container">
+      <% if(error != undefined) { %>
+        <div class="center card-panel red lighten-1 white-text"> <%= error %> </div>
+      <% } %>
+
+      <div id="self-box-form" class="center-align">
+        <i style="padding: 20px" class="material-icons teal lighten-2 circle medium white-text">person</i>
+        <form action="/login/add" method="POST">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="name" type="text" class="validate" name="name" value="<%= name %>">
+              <label for="name">Nome</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" name="email" value="<%= email %>">
+              <label for="email">E-mail</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password1" type="password" class="validate" name="pass1"> 
+              <label for="password1">Senha</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password2" type="password" class="validate" name="pass2"> 
+              <label for="password2">Confirme a senha</label>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-large waves-effect waves-light teal lighten-2" type="submit" name="action">Registrar
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        <a href="/login" class="blue-text waves-effect waves-indigo btn-flat">Já possui uma conta? Faça login</a> 
+      </div>
+    </div>
+  
+<%- include("../partials/footer.ejs") %>

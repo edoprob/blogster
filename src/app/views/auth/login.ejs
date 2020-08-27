@@ -1,0 +1,34 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbarLogin.ejs") %>
+  
+    <div class="container">
+        <% if(error != undefined) { %>
+          <div class="center card-panel red lighten-1 white-text"> <%= error %> </div>
+        <% } %>
+        
+      <div id="self-box-form" class="center-align">
+        <i style="padding: 20px" class="material-icons teal lighten-2 circle medium white-text">lock</i>
+        <form action="/login/authenticate" method="POST">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" name="email" value="<%= email %>">
+              <label for="email">E-mail</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate" name="pass"> 
+              <label for="password">Senha</label>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-large waves-effect waves-light teal lighten-2" type="submit">Entrar
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        <a href="/login/register" class="blue-text waves-effect waves-indigo btn-flat">Cadastre-se</a> 
+      </div>
+    </div>
+    
+<%- include("../partials/footer.ejs") %>
