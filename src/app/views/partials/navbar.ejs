@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <nav>
+      <div class="nav-wrapper grey darken-3">
+        <a style="padding-left: 20px;" href="/" class="brand-logo">Blogster</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/articles">Artigos</a></li>
+            <li><a href="/categories">Categorias</a></li>
+            <% if(session.logged == true){ %>
+              <li><a href="/user"><%= session.name %></a></li>
+              <li><a href="/login/logout">Sair</a></li>
+            <% } else { %>
+              <li><a href="/login">Entrar</a></li>
+              <li><a href="/login/register">Registre-se</a></li>
+            <% } %>
+        </ul>
+      </div>
+    </nav>
+  
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/articles">Artigos</a></li>
+      <li><a href="/categories">Categorias</a></li>
+      <% if(session.logged == true){ %>
+        <li><a href="/user"><%= session.name %></a></li>
+        <li><a href="/login/logout">Sair</a></li>
+      <% } else { %>
+        <li><a href="/login">Entrar</a></li>
+        <li><a href="/login/register">Registre-se</a></li>
+      <% } %>
+    </ul>          
