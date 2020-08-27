@@ -1,0 +1,26 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbar.ejs") %>
+
+  <div class="container center">
+    <h3>Nova categoria</h3>
+    <% if(error != undefined){ %>
+      <div class="center card-panel red lighten-1 white-text"><%= error %></div>
+    <% } %>
+      <a href="/categories" class="waves-effect waves-light btn self-button"><i class="material-icons left">arrow_back</i>Voltar</a>
+    <div id="self-box-form">
+      <div class="row">
+        <form action="/categories/new/add" method="POST">
+          <div class="row">
+            <div class="input-field">
+              <input id="input_text" type="text" name="name" value="<%= name %>">
+              <label for="input_text">Nome da categoria</label><br><br>
+              <button type="submit" class="btn waves-effect">Criar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+<%- include("../partials/footer.ejs") %>

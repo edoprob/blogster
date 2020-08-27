@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbar.ejs") %>
+
+  <div class="container center">
+    <h3>Editar</h3>
+    <% if(error != undefined){ %>
+      <div class="center card-panel red lighten-1 white-text"><%= error %></div>
+    <% } %>
+    <a href="/categories" class="waves-effect waves-light btn self-button"><i class="material-icons left">arrow_back</i>Voltar</a>
+    <div id="self-box-form">
+      <div class="row">
+        <form action="/categories/edit/<%= category.id %>" method="POST">
+          <div class="row">
+            <div class="input-field">
+              <input id="input_text" type="text" name="name" value="<%= category.title %>">
+              <label for="input_text">Nome da categoria</label><br><br>
+              <button type="submit" class="btn waves-effect">Concluir</button>
+              <br><br><hr>
+            </div>
+          </div>
+        </form>
+        <form action="/categories/delete/<%= category.id %>" method="POST" onsubmit="confirmErase(event, this)">
+          <button class="btn waves-effect red" type="submit" >Excluir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function confirmErase(event, form){
+      event.preventDefault();
+      var decision = confirm("Confirmar a exclusão? não poderá reverter a decisão");
+      if (decision) {
+        form.submit();
+      }
+    }
+  </script>
+
+<%- include("../partials/footer.ejs") %>
