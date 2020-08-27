@@ -1,0 +1,26 @@
+body {
+  background-color: #9fa8da;
+}
+#self-box-form {
+  background-color: white;
+  max-width: 350px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: solid 0 #bbb9b9;
+  border-radius: 1px;
+}
+.self-button {
+  margin: 10px 0;
+}
+#self-box {
+  min-height: 550px;
+  background-color: #f3f3f3;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: solid 0 #bbb9b9;
+  border-radius: 1px;
+}
